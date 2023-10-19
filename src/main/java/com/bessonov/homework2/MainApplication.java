@@ -5,35 +5,51 @@ import java.util.Scanner;
 
 public class MainApplication {
     public static void main(String[] args) {
+
         int num = 12;
         MainApplication.printSpecifiedNumberTimes("Java", num);
+
         int[] arr1 = new int[3];
         int[] arr2 = new int[4];
         int[] arr3 = new int[6];
+
         sumElementsGreaterThanFive(arrayRandom(arr1));
+
         fillingArray(arrayRandom(arr1), num);
+
         incrementElementArray(arrayRandom(arr1), num);
+
         sumElementsHalf(arrayRandom(arr1));
+
         arrayIncomingSumm(arrayRandom(arr1), arrayRandom(arr2), arrayRandom(arr3));
-        dotArray(new int[]{ 7, 2, 2, 2 });
+
+        dotArray(new int[]{7, 2, 2, 2});
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Если вы хотите проверить идут ли все элементы массива в возрастающей последовательности " + "то введите - 1.\nЕсли вы хотите проверить идут ли все элементы массива в убывающей " + "последовательности" + " " + "то нажмите - 2.\nЕсли вы хотите выйти нажмите любую другой символ или их набор.");
         String userSelection = scanner.nextLine();
+        int[] arr = {1, 2, 3, 4, 5};
         while (true) {
-            if (userSelection.equalsIgnoreCase("1")) {
-                arrayElements(new int[]{ 1, 2, 3, 4, 5 }, userSelection);
+            if (userSelection.equals("1")) {
+                arrayElements(new int[]{1, 2, 3, 4, 5}, userSelection);
                 break;
-            } else if (userSelection.equalsIgnoreCase("2")) {
-                arrayElements(new int[]{ 1, 2, 3, 4, 5 }, userSelection);
+            } else if (userSelection.equals("2")) {
+                arrayElements(new int[]{1, 2, 3, 4, 5}, userSelection);
                 break;
             } else {
                 break;
             }
         }
-        reverseArray(new int[]{ 1, 2, 3, 4, 5 });
+
+        reverseArray(arr);
     }
 
-    //Заполняет массив случайными числами от 0 до 10
+    /**
+     * Заполняет массив случайными числами от 0 до 10
+     *
+     * @param array
+     * @return
+     */
     private static int[] arrayRandom(int[] array) {
         for (int i = 0; i < array.length; i++) {
             array[i] = (int) (Math.random() * 11);
@@ -41,14 +57,18 @@ public class MainApplication {
         return array;
     }
 
-    //Печатает строку count раз
+    /**
+     * Печатает строку count раз
+     */
     private static void printSpecifiedNumberTimes(String str, int count) {
-        System.out.println("Повтор строки указанное количество раз: \n" + str.repeat(count));
+        for (int i = 0; i < count; i++) {
+            System.out.println(str);
+        }
     }
 
-    /*
-    принимает в качестве аргумента целочисленный массив, суммирует все элементы, значение которых больше 5, и
-    печатает полученную сумму в консоль
+    /**
+     * принимает в качестве аргумента целочисленный массив, суммирует все элементы, значение которых больше 5, и
+     * печатает полученную сумму в консоль
      */
     private static void sumElementsGreaterThanFive(int[] list) {
         int result = 0;
@@ -60,18 +80,20 @@ public class MainApplication {
         System.out.println("Сумма всех элементов массива привышающие 5: \n" + result);
     }
 
-    /*
-     Метод, принимает в качестве аргументов целое число и ссылку на целочисленный
-     массив, метод заполняет каждую ячейку массива указанным числом
+    /**
+     * Метод, принимает в качестве аргументов целое число и ссылку на целочисленный
+     * массив, метод заполняет каждую ячейку массива указанным числом
      */
     private static void fillingArray(int[] array, int number) {
-        Arrays.fill(array, number);
+        for (int i = 0; i < array.length; i++) {
+            array[i] = number;
+        }
         System.out.println("Заполнили весь массив числом = " + number + ": \n" + Arrays.toString(array));
     }
 
-    /*
-    Метод, принимает в качестве аргументов целое число и ссылку на целочисленный
-    массив, увеличивающий каждый элемент массива на указанное число
+    /**
+     * Метод, принимает в качестве аргументов целое число и ссылку на целочисленный
+     * массив, увеличивающий каждый элемент массива на указанное число
      */
     private static void incrementElementArray(int[] array, int number) {
         for (int i = 0; i < array.length; i++) {
@@ -80,9 +102,9 @@ public class MainApplication {
         System.out.println("Увеличили каждый элемент массива на число = " + number + ": \n" + Arrays.toString(array));
     }
 
-    /*
-    Метод, принимает в качестве аргумента целочисленный массив, и печатаеет в
-    консоль информацию о том, сумма элементов какой из половин массива больше
+    /**
+     * Метод, принимает в качестве аргумента целочисленный массив, и печатаеет в
+     * консоль информацию о том, сумма элементов какой из половин массива больше
      */
     private static void sumElementsHalf(int[] array) {
         int leftHalf = 0;
@@ -104,9 +126,9 @@ public class MainApplication {
         }
     }
 
-    /*
-    Метод, принимает на вход набор целочисленных массивов, и получает новый
-    массив равный сумме входящих
+    /**
+     * Метод, принимает на вход набор целочисленных массивов, и получает новый
+     * массив равный сумме входящих
      */
     private static void arrayIncomingSumm(int[]... array) {
         //Переменная для хранения длины самого длинного массива из нашего массива
@@ -137,9 +159,9 @@ public class MainApplication {
         System.out.println(Arrays.toString(sumArray));
     }
 
-    /*
-    Метод, проверяет что есть “точка” в массиве, в которой сумма левой и правой части
-    равны. “Точка находится между элементами”
+    /**
+     * Метод, проверяет что есть “точка” в массиве, в которой сумма левой и правой части
+     * равны. “Точка находится между элементами”
      */
     private static void dotArray(int[] array) {
         int sum = 0;
@@ -159,27 +181,26 @@ public class MainApplication {
         System.out.println(result);
     }
 
-    /*
-    Не могу понять что тут не так, вот от слово совсем.
+    /**
+     * Реализуйте метод, проверяющий что все элементы массива идут в порядке убывания или
+     * возрастания (по выбору пользователя)
      */
     private static void arrayElements(int[] array, String order) {
         String result = null;
-        if (order.equalsIgnoreCase("1")) {
+        if (order.equals("1")) {
             for (int i = 1; i < array.length; i++) {
-                if (array[i] < array[i - 1]) {
+                if (array[i] <= array[i - 1]) {
                     result = "Все элементы массива идут в поряде убывания";
-                    continue;
                 } else {
-                    result = "Элементы массива не идут в порядке возростания";
+                    result = "Элементы массива не идут в порядке убывания";
                     break;
                 }
             }
             System.out.println(result);
-        } else if (order.equalsIgnoreCase("2")) {
+        } else if (order.equals("2")) {
             for (int i = 1; i < array.length; i++) {
-                if (array[i] > array[i - 1]) {
+                if (array[i] >= array[i - 1]) {
                     result = "Все элементы массива идут в порядке возростания";
-                    continue;
                 } else {
                     result = "Элементы массива не идут в порядке возростания";
                     break;
@@ -192,8 +213,8 @@ public class MainApplication {
         }
     }
 
-    /*
-    Метод, “переворачивающий” входящий массив.
+    /**
+     * Метод, “переворачивающий” входящий массив.
      */
     private static void reverseArray(int[] array) {
         int count = array[0];
